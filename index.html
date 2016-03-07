@@ -22,6 +22,62 @@
     <link type="text/css" rel="stylesheet" href="styles/zabuto_calendar.min.css">
     <link type="text/css" rel="stylesheet" href="styles/pace.css">
     <link type="text/css" rel="stylesheet" href="styles/jquery.news-ticker.css">
+    <script src="script/jquery-1.10.2.min.js"></script>
+    <script src="script/jquery-migrate-1.2.1.min.js"></script>
+    <script src="script/jquery-ui.js"></script>
+    <script src="script/bootstrap.min.js"></script>
+    <script src="script/bootstrap-hover-dropdown.js"></script>
+    <script src="script/html5shiv.js"></script>
+    <script src="script/respond.min.js"></script>
+    <script src="script/jquery.metisMenu.js"></script>
+    <script src="script/jquery.slimscroll.js"></script>
+    <script src="script/jquery.cookie.js"></script>
+    <script src="script/icheck.min.js"></script>
+    <script src="script/custom.min.js"></script>
+    <script src="script/jquery.news-ticker.js"></script>
+    <script src="script/jquery.menu.js"></script>
+    <script src="script/pace.min.js"></script>
+    <script src="script/holder.js"></script>
+    <script src="script/responsive-tabs.js"></script>
+    <script src="script/jquery.flot.js"></script>
+    <script src="script/jquery.flot.categories.js"></script>
+    <script src="script/jquery.flot.pie.js"></script>
+    <script src="script/jquery.flot.tooltip.js"></script>
+    <script src="script/jquery.flot.resize.js"></script>
+    <script src="script/jquery.flot.fillbetween.js"></script>
+    <script src="script/jquery.flot.stack.js"></script>
+    <script src="script/jquery.flot.spline.js"></script>
+    <script src="script/zabuto_calendar.min.js"></script>
+    <script src="script/index.js"></script>
+    <!--LOADING SCRIPTS FOR CHARTS-->
+    <script src="script/highcharts.js"></script>
+    <script src="script/data.js"></script>
+    <script src="script/drilldown.js"></script>
+    <script src="script/exporting.js"></script>
+    <script src="script/highcharts-more.js"></script>
+    <script src="script/charts-highchart-pie.js"></script>
+    <script src="script/charts-highchart-more.js"></script>
+    <!--CORE JAVASCRIPT-->
+    <script src="script/main.js"></script>
+    <script>        (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r;
+        i[r] = i[r] || function () {
+                    (i[r].q = i[r].q || []).push(arguments)
+                }, i[r].l = 1 * new Date();
+        a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0];
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+    ga('create', 'UA-145464-12', 'auto');
+    ga('send', 'pageview');
+    </script>
+    <script>
+        $(function(){
+            $('#sidebar_main').load("template_sidebar.html");
+        });
+    </script>
 </head>
 <body>
     <div>
@@ -56,30 +112,9 @@
             <!--BEGIN SIDEBAR MENU-->
             <nav id="sidebar" role="navigation" data-step="2" data-intro="Template has &lt;b&gt;many navigation styles&lt;/b&gt;"
                 data-position="right" class="navbar-default navbar-static-side">
-            <div class="sidebar-collapse menu-scroll">
-                <ul id="side-menu" class="nav">
-                    
-                     <div class="clearfix"></div>
-                    <li class="active"><a href="index.html"><i class="fa fa-tachometer fa-fw">
-                        <div class="icon-bg bg-orange"></div>
-                    </i><span class="menu-title">Dashboard</span></a></li>
-                    <li><a href="manage_devices.html"><i class="fa fa-desktop fa-fw">
-                        <div class="icon-bg bg-pink"></div>
-                    </i><span class="menu-title">Manage Devices</span></a>
-                       
-                    </li>
-                    <li><a href="manage_people.html"><i class="fa fa-users fa-fw">
-                        <div class="icon-bg bg-green"></div>
-                    </i><span class="menu-title">Manage People</span></a>
-                       
-                    </li>
-                    <li><a href="Extras.html"><i class="fa fa-tablet fa-fw">
-                        <div class="icon-bg bg-grey"></div>
-                    </i><span class="menu-title">Add New Product</span></a>
-                      
-                    </li>
-                </ul>
-            </div>
+                <div id = "sidebar_main" class="sidebar-collapse menu-scroll">
+
+                </div>
         </nav>
             <!--END SIDEBAR MENU-->
             <!--BEGIN PAGE WRAPPER-->
@@ -91,7 +126,7 @@
                             Dashboard</div>
                     </div>
                     <ol class="breadcrumb page-breadcrumb pull-right">
-                        <li><i class="fa fa-home"></i>&nbsp;<a href="dashboard.html">Home</a>&nbsp;&nbsp;<i class="fa fa-angle-right"></i>&nbsp;&nbsp;</li>
+                        <li><i class="fa fa-home"></i>&nbsp;<a href="index.html">Home</a>&nbsp;&nbsp;<i class="fa fa-angle-right"></i>&nbsp;&nbsp;</li>
                         <li class="hidden"><a href="#">Dashboard</a>&nbsp;&nbsp;<i class="fa fa-angle-right"></i>&nbsp;&nbsp;</li>
                         <li class="active">Dashboard</li>
                     </ol>
@@ -202,58 +237,5 @@
             <!--END PAGE WRAPPER-->
         </div>
     </div>
-    <script src="script/jquery-1.10.2.min.js"></script>
-    <script src="script/jquery-migrate-1.2.1.min.js"></script>
-    <script src="script/jquery-ui.js"></script>
-    <script src="script/bootstrap.min.js"></script>
-    <script src="script/bootstrap-hover-dropdown.js"></script>
-    <script src="script/html5shiv.js"></script>
-    <script src="script/respond.min.js"></script>
-    <script src="script/jquery.metisMenu.js"></script>
-    <script src="script/jquery.slimscroll.js"></script>
-    <script src="script/jquery.cookie.js"></script>
-    <script src="script/icheck.min.js"></script>
-    <script src="script/custom.min.js"></script>
-    <script src="script/jquery.news-ticker.js"></script>
-    <script src="script/jquery.menu.js"></script>
-    <script src="script/pace.min.js"></script>
-    <script src="script/holder.js"></script>
-    <script src="script/responsive-tabs.js"></script>
-    <script src="script/jquery.flot.js"></script>
-    <script src="script/jquery.flot.categories.js"></script>
-    <script src="script/jquery.flot.pie.js"></script>
-    <script src="script/jquery.flot.tooltip.js"></script>
-    <script src="script/jquery.flot.resize.js"></script>
-    <script src="script/jquery.flot.fillbetween.js"></script>
-    <script src="script/jquery.flot.stack.js"></script>
-    <script src="script/jquery.flot.spline.js"></script>
-    <script src="script/zabuto_calendar.min.js"></script>
-    <script src="script/index.js"></script>
-    <!--LOADING SCRIPTS FOR CHARTS-->
-    <script src="script/highcharts.js"></script>
-    <script src="script/data.js"></script>
-    <script src="script/drilldown.js"></script>
-    <script src="script/exporting.js"></script>
-    <script src="script/highcharts-more.js"></script>
-    <script src="script/charts-highchart-pie.js"></script>
-    <script src="script/charts-highchart-more.js"></script>
-    <!--CORE JAVASCRIPT-->
-    <script src="script/main.js"></script>
-    <script>        (function (i, s, o, g, r, a, m) {
-            i['GoogleAnalyticsObject'] = r;
-            i[r] = i[r] || function () {
-                (i[r].q = i[r].q || []).push(arguments)
-            }, i[r].l = 1 * new Date();
-            a = s.createElement(o),
-            m = s.getElementsByTagName(o)[0];
-            a.async = 1;
-            a.src = g;
-            m.parentNode.insertBefore(a, m)
-        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
-        ga('create', 'UA-145464-12', 'auto');
-        ga('send', 'pageview');
-
-
-</script>
 </body>
 </html>
