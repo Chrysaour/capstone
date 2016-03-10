@@ -22,6 +22,7 @@
     <link type="text/css" rel="stylesheet" href="styles/zabuto_calendar.min.css">
     <link type="text/css" rel="stylesheet" href="styles/pace.css">
     <link type="text/css" rel="stylesheet" href="styles/jquery.news-ticker.css">
+	<link type="text/css" rel="stylesheet" href="styles/add_new_user_style.css">
     <script src="script/jquery-1.10.2.min.js"></script>
     <script src="script/jquery-migrate-1.2.1.min.js"></script>
     <script src="script/jquery-ui.js"></script>
@@ -78,13 +79,22 @@
             $('#sidebar_main').load("template_sidebar.html");
         });
     </script>
+	<script>
+		$('select[name=priviledge]').change(function(){
+		  if ($(this).val() == '1'){
+			$('#password').show();
+		  }else{
+			$('#password').hide();
+		  }
+		});
+	</script>
 </head>
 <body>
     <div>
         <!--BEGIN BACK TO TOP-->
         <a id="totop" href="#"><i class="fa fa-angle-up"></i></a>
         <!--END BACK TO TOP-->
-        <!--BEGIN TOPBAR-->
+                <!--BEGIN TOPBAR-->
         <div id="header-topbar-option-demo" class="page-header-topbar">
             <nav id="topbar" role="navigation" style="margin-bottom: 0;" data-step="3" class="navbar navbar-default navbar-static-top">
             <div class="navbar-header">
@@ -108,111 +118,27 @@
             <!--BEGIN SIDEBAR MENU-->
             <nav id="sidebar" role="navigation" data-step="2" data-intro="Template has &lt;b&gt;many navigation styles&lt;/b&gt;"
                 data-position="right" class="navbar-default navbar-static-side">
-                <div id = "sidebar_main" class="sidebar-collapse menu-scroll">
-
-                </div>
+            <div id="sidebar_main" class="sidebar-collapse menu-scroll"></div>
         </nav>
-            <!--END SIDEBAR MENU-->
-            <!--BEGIN PAGE WRAPPER-->
+          
+          
             <div id="page-wrapper">
                 <!--BEGIN TITLE & BREADCRUMB PAGE-->
                 <div id="title-breadcrumb-option-demo" class="page-title-breadcrumb">
                     <div class="page-header pull-left">
                         <div class="page-title">
-                            Dashboard</div>
+                            Add New User</div>
                     </div>
                     <ol class="breadcrumb page-breadcrumb pull-right">
                         <li><i class="fa fa-home"></i>&nbsp;<a href="index.html">Home</a>&nbsp;&nbsp;<i class="fa fa-angle-right"></i>&nbsp;&nbsp;</li>
-                        <li class="hidden"><a href="#">Dashboard</a>&nbsp;&nbsp;<i class="fa fa-angle-right"></i>&nbsp;&nbsp;</li>
-                        <li class="active">Dashboard</li>
+                        <li class="hidden"><a href="#">Add New User</a>&nbsp;&nbsp;<i class="fa fa-angle-right"></i>&nbsp;&nbsp;</li>
+                        <li class="active">Add New user</li>
                     </ol>
                     <div class="clearfix">
                     </div>
                 </div>
                 <!--END TITLE & BREADCRUMB PAGE-->
-				<div class="panel panel-yellow">
-                            <div class="panel-heading">Main Door</div>
-                            <div class="panel-body">
-                                <table class="table table-hover">
-                                    <thead>
-                                    <tr>
-                                        <th>#</th>
-                                        <th>Username</th>
-                                        <th>Device ID</th>
-                                        <th>Status</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Admin</td>
-                                        <td>20013fea6bcc820c</td>
-                                        <td><span class="label label-sm label-success">Authorized</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td>Sarah</td>
-                                        <td>22313fea6bcc820c</td>
-                                        <td><span class="label label-sm label-success">Authorized</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td>3</td>
-                                        <td>Kiddy</td>
-                                        <td>20013ewr6bcc820c</td>
-                                        <td><span class="label label-sm label-danger">Blocked</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td>4</td>
-                                        <td>Josh</td>
-                                        <td>20013fea6bcc123c</td>
-                                        <td><span class="label label-sm label-danger">Blocked</span></td>
-                                    </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-						<div class="panel panel-orange">
-                            <div class="panel-heading">Office Door</div>
-                            <div class="panel-body">
-                                <table class="table table-hover">
-                                    <thead>
-                                    <tr>
-                                        <th>#</th>
-                                        <th>Username</th>
-                                        <th>Device ID</th>
-                                        <th>Status</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Admin</td>
-                                        <td>20013fea6bcc820c</td>
-                                        <td><span class="label label-sm label-success">Authorized</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td>Sarah</td>
-                                        <td>22313fea6bcc820c</td>
-                                        <td><span class="label label-sm label-danger">Blocked</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td>3</td>
-                                        <td>Kiddy</td>
-                                        <td>20013ewr6bcc820c</td>
-                                        <td><span class="label label-sm label-danger">Blocked</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td>4</td>
-                                        <td>Josh</td>
-                                        <td>20013fea6bcc123c</td>
-                                        <td><span class="label label-sm label-danger">Blocked</span></td>
-                                    </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-				    <!--BEGIN CONTENT-->
+                <!--BEGIN CONTENT-->
                 <div class="page-content">
                     <div id="tab-general">
                         <div class="row mbl">
@@ -225,6 +151,73 @@
                                 
                             </div>
 
+                            <div class="col-lg-12">
+                              
+                                    
+                              <div class="row">
+                    <div class="col-md-12">
+                        <div class="row mtl">
+                            <div class="col-md-9">
+                                <div id="generalTabContent" class="tab-content">
+                                    <div id="tab-edit" class="tab-pane fade in active">
+                                        <form action="#" class="form-horizontal"><h3>New User</h3>
+
+                                            <div class="form-group"><label class="col-sm-3 control-label">Device ID</label>
+
+                                                <div class="col-sm-9 controls">
+                                                    <div class="row">
+                                                        <div class="col-xs-9"><input type="Device ID" placeholder="Ex. das243asda432" class="form-control"/></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+											<div class="form-group"><label class="col-sm-3 control-label">Priviledge</label>
+											<div class="col-sm-9 controls">
+                                                    <div class="row">
+													<div class="col-xs-9">
+                                                        <select name="priviledge" class="form-control" required="true">
+                                                            <option value="0">Normal User</option>
+                                                            <option value="1">Admin</option>
+                                                        </select>
+                                                    </div>
+												</div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group"><label class="col-sm-3 control-label">Username</label>
+
+                                                <div class="col-sm-9 controls">
+                                                    <div class="row">
+                                                        <div class="col-xs-9"><input type="text" placeholder="username" class="form-control"/></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group" id="password"><label class="col-sm-3 control-label">Password</label>
+
+                                                <div class="col-sm-9 controls">
+                                                    <div class="row">
+                                                        <div class="col-xs-4"><input type="password" placeholder="password" class="form-control"/></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group" id="confirm_password"><label class="col-sm-3 control-label">Confirm Password</label>
+
+                                                <div class="col-sm-9 controls">
+                                                    <div class="row">
+                                                        <div class="col-xs-4"><input type="password" placeholder="password" class="form-control"/></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                            <hr/>
+                                            <button type="submit" class="btn btn-green btn-block">Finish</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                              
+                                </div>
                         </div>
                     </div>
                 </div>
