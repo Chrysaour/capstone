@@ -1,3 +1,16 @@
+<?php
+session_start();
+include_once 'dbconnect.php';
+
+if(!isset($_SESSION['user']))
+{
+	header("Location: Login.php");
+}
+$res=mysql_query("SELECT * FROM users WHERE user_id=".$_SESSION['user']);
+$userRow=mysql_fetch_array($res);
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -75,7 +88,7 @@
     </script>
     <script>
         $(function(){
-            $('#sidebar_main').load("template_sidebar.html");
+            $('#sidebar_main').load("template_sidebar.php");
         });
     </script>
 </head>
@@ -89,15 +102,15 @@
             <nav id="topbar" role="navigation" style="margin-bottom: 0;" data-step="3" class="navbar navbar-default navbar-static-top">
             <div class="navbar-header">
                 <button type="button" data-toggle="collapse" data-target=".sidebar-collapse" class="navbar-toggle"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
-                <a id="logo" href="index.html" class="navbar-brand"><span class="fa fa-rocket"></span><span class="logo-text">Management</span><span style="display: none" class="logo-text-icon">µ</span></a></div>
+                <a id="logo" href="index.php" class="navbar-brand"><span class="fa fa-rocket"></span><span class="logo-text">Management</span><span style="display: none" class="logo-text-icon">µ</span></a></div>
             <div class="topbar-main"><a id="menu-toggle" href="#" class="hidden-xs"><i class="fa fa-bars"></i></a>
                 <ul class="nav navbar navbar-top-links navbar-right mbn">
 
-                    <li class="dropdown topbar-user"><a data-hover="dropdown" href="#" class="dropdown-toggle"><img src="images/avatar/profile-pic.png" alt="" class="img-responsive img-circle"/>&nbsp;<span class="hidden-xs">Admin</span>&nbsp;<span class="caret"></span></a>
+                    <li class="dropdown topbar-user"><a data-hover="dropdown" href="#" class="dropdown-toggle"><img src="images/avatar/profile-pic.png" alt="" class="img-responsive img-circle"/>&nbsp;<span class="hidden-xs"><?php echo $userRow['username']; ?></span>&nbsp;<span class="caret"></span></a>
                         <ul class="dropdown-menu dropdown-user pull-right">
                             <li><a href="#"><i class="fa fa-user"></i>My Profile</a></li>
                             <li class="divider"></li>
-                            <li><a href="Login.html"><i class="fa fa-key"></i>Log Out</a></li>
+                            <li><a href="logout.php?logout"><i class="fa fa-key"></i>Log Out</a></li>
                         </ul>
                     </li>
                     </ul>
@@ -121,7 +134,7 @@
                             Add New Product</div>
                     </div>
                     <ol class="breadcrumb page-breadcrumb pull-right">
-                        <li><i class="fa fa-home"></i>&nbsp;<a href="index.html">Home</a>&nbsp;&nbsp;<i class="fa fa-angle-right"></i>&nbsp;&nbsp;</li>
+                        <li><i class="fa fa-home"></i>&nbsp;<a href="index.php">Home</a>&nbsp;&nbsp;<i class="fa fa-angle-right"></i>&nbsp;&nbsp;</li>
                         <li class="hidden"><a href="#">Add New Product</a>&nbsp;&nbsp;<i class="fa fa-angle-right"></i>&nbsp;&nbsp;</li>
                         <li class="active">Add New Product</li>
                     </ol>
@@ -153,38 +166,15 @@
                                     <div id="tab-edit" class="tab-pane fade in active">
                                         <form action="#" class="form-horizontal"><h3>Admin Setting</h3>
 
-                                            <div class="form-group"><label class="col-sm-3 control-label">Email</label>
+                                            <div class="form-group"><label class="col-sm-3 control-label">Admin</label>
 
                                                 <div class="col-sm-9 controls">
                                                     <div class="row">
-                                                        <div class="col-xs-9"><input type="email" placeholder="email@yourcompany.com" class="form-control"/></div>
+                                                        <div class="col-xs-9"><input type="text" placeholder="admin" class="form-control"/></div>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="form-group"><label class="col-sm-3 control-label">Username</label>
 
-                                                <div class="col-sm-9 controls">
-                                                    <div class="row">
-                                                        <div class="col-xs-9"><input type="text" placeholder="username" class="form-control"/></div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="form-group"><label class="col-sm-3 control-label">Password</label>
-
-                                                <div class="col-sm-9 controls">
-                                                    <div class="row">
-                                                        <div class="col-xs-4"><input type="password" placeholder="password" class="form-control"/></div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="form-group"><label class="col-sm-3 control-label">Confirm Password</label>
-
-                                                <div class="col-sm-9 controls">
-                                                    <div class="row">
-                                                        <div class="col-xs-4"><input type="password" placeholder="password" class="form-control"/></div>
-                                                    </div>
-                                                </div>
-                                            </div>
                                             <hr/>
                                             <h3>Product Setting</h3>
 

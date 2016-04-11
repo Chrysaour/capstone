@@ -1,3 +1,21 @@
+<?php
+session_start();
+include_once 'dbconnect.php';
+if(!isset($_SESSION['user']))
+{
+    header("Location: Login.php");
+}
+$res=mysql_query("SELECT * FROM users WHERE user_id=".$_SESSION['user']);
+$userRow=mysql_fetch_array($res);
+# Prepare the SELECT Query
+$selectSQL = 'SELECT * FROM `users`';
+# Execute the SELECT Query
+if( !( $selectRes = mysql_query( $selectSQL ) ) ){
+    echo 'Retrieval of data from Database Failed - #'.mysql_errno().': '.mysql_error();
+}else{
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -75,7 +93,7 @@
     </script>
     <script>
         $(function(){
-            $('#sidebar_main').load("template_sidebar.html");
+            $('#sidebar_main').load("template_sidebar.php");
         });
     </script>
 </head>
@@ -89,14 +107,14 @@
         <nav id="topbar" role="navigation" style="margin-bottom: 0;" data-step="3" class="navbar navbar-default navbar-static-top">
             <div class="navbar-header">
                 <button type="button" data-toggle="collapse" data-target=".sidebar-collapse" class="navbar-toggle"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
-                <a id="logo" href="index.html" class="navbar-brand"><span class="fa fa-rocket"></span><span class="logo-text">Management</span><span style="display: none" class="logo-text-icon">µ</span></a></div>
+                <a id="logo" href="index.php" class="navbar-brand"><span class="fa fa-rocket"></span><span class="logo-text">Management</span><span style="display: none" class="logo-text-icon">µ</span></a></div>
             <div class="topbar-main"><a id="menu-toggle" href="#" class="hidden-xs"><i class="fa fa-bars"></i></a>
                 <ul class="nav navbar navbar-top-links navbar-right mbn">
-                    <li class="dropdown topbar-user"><a data-hover="dropdown" href="#" class="dropdown-toggle"><img src="images/avatar/profile-pic.png" alt="" class="img-responsive img-circle"/>&nbsp;<span class="hidden-xs">Admin</span>&nbsp;<span class="caret"></span></a>
+                    <li class="dropdown topbar-user"><a data-hover="dropdown" href="#" class="dropdown-toggle"><img src="images/avatar/profile-pic.png" alt="" class="img-responsive img-circle"/>&nbsp;<span class="hidden-xs"><?php echo $userRow['username']; ?></span>&nbsp;<span class="caret"></span></a>
                         <ul class="dropdown-menu dropdown-user pull-right">
                             <li><a href="#"><i class="fa fa-user"></i>My Profile</a></li>
                             <li class="divider"></li>
-                            <li><a href="Login.html"><i class="fa fa-key"></i>Log Out</a></li>
+                            <li><a href="logout.php?logout"><i class="fa fa-key"></i>Log Out</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -122,7 +140,7 @@
                         Manage Users</div>
                 </div>
                 <ol class="breadcrumb page-breadcrumb pull-right">
-                    <li><i class="fa fa-home"></i>&nbsp;<a href="index.html">Home</a>&nbsp;&nbsp;<i class="fa fa-angle-right"></i>&nbsp;&nbsp;</li>
+                    <li><i class="fa fa-home"></i>&nbsp;<a href="index.php">Home</a>&nbsp;&nbsp;<i class="fa fa-angle-right"></i>&nbsp;&nbsp;</li>
                     <li class="hidden"><a href="#">Manange Users</a>&nbsp;&nbsp;<i class="fa fa-angle-right"></i>&nbsp;&nbsp;</li>
                     <li class="active">Manage Users</li>
                 </ol>
@@ -130,6 +148,37 @@
                 </div>
             </div>
             <!--END TITLE & BREADCRUMB PAGE-->
+            <div class="panel panel-yellow">
+                <div class="panel-heading">Users</div>
+                <div class="panel-body">
+                    <table class="table table-hover">
+                        <thead>
+                        <tr>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Device ID</th>
+                            <th>Email</th>
+                            <th>Privilege</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <?php
+                        if( mysql_num_rows( $selectRes )==0 ){
+                            echo '<tr><td colspan="5">No Rows Returned</td></tr>';
+                        }else{
+                            while( $row = mysql_fetch_assoc( $selectRes ) ){
+                                echo "<tr><td>{$row['firstname']}</td><td>{$row['lastname']}</td><td>{$row['device_id']}</td><td>{$row['email']}</td><td>{$row['priviledge']}</td></tr>\n";
+                            }
+                        }
+                        ?>
+                        </tbody>
+                    </table>
+                    <?php
+                    }
+
+                    ?>
+                </div>
+            </div>
             <!--BEGIN CONTENT-->
             <div class="page-content">
                 <div id="tab-general">
