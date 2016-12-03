@@ -31,7 +31,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `firstname` varchar(50) NOT NULL,
   `lastname` varchar(50) NOT NULL,
   `email` varchar(50) NOT NULL,
-  `device_id` varchar(50) NOT NULL,
+  `license_id` varchar(20) NOT NULL,
   `priviledge` varchar(50) NOT NULL,
   `username` varchar(50),
   `password` varchar(50),
@@ -43,8 +43,8 @@ CREATE TABLE IF NOT EXISTS `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`user_id`, `firstname`, `lastname`, `email`, `device_id`, `priviledge`, `usermame`, `password`) VALUES
-(1, 'John', 'Cena', 'jc@jc.com', 'bhbjiuu78896ggy', 'ADMIN', 'Admin', '202cb962ac59075b964b07152d234b70');
+INSERT INTO `users` (`user_id`, `firstname`, `lastname`, `email`, `license_id`, `priviledge`, `usermame`, `password`) VALUES
+(1, 'John', 'Cena', 'jc@jc.com', 'bhbjiuu78896ggy', 'ADMIN', 'Admin', '21232f297a57a5a743894a0e4a801fc3');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

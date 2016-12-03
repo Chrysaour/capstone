@@ -24,7 +24,7 @@ if(!mysql_select_db("capstone"))
     <tr>
       <th>First Name</th>
       <th>Last Name</th>
-      <th>Device ID</th>
+      <th>License Key</th>
       <th>Email</th>
 	  <th>Privilege</th>
     </tr>
@@ -35,7 +35,7 @@ if(!mysql_select_db("capstone"))
         echo '<tr><td colspan="5">No Rows Returned</td></tr>';
       }else{
         while( $row = mysql_fetch_assoc( $selectRes ) ){
-          echo "<tr><td>{$row['firstname']}</td><td>{$row['lastname']}</td><td>{$row['device_id']}</td><td>{$row['email']}</td><td>{$row['priviledge']}</td></tr>\n";
+          echo "<tr><td>{$row['firstname']}</td><td>{$row['lastname']}</td><td>{$row['license_id']}</td><td>{$row['email']}</td><td>{$row['priviledge']}</td></tr>\n";
         }
       }
     ?>

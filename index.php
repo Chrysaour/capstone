@@ -183,47 +183,7 @@ $userRow=mysql_fetch_array($res);
                                 </table>
                             </div>
                         </div>
-						<div class="panel panel-orange">
-                            <div class="panel-heading">Office Door</div>
-                            <div class="panel-body">
-                                <table class="table table-hover">
-                                    <thead>
-                                    <tr>
-                                        <th>#</th>
-                                        <th>Username</th>
-                                        <th>Device ID</th>
-                                        <th>Status</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Admin</td>
-                                        <td>20013fea6bcc820c</td>
-                                        <td><span class="label label-sm label-success">Authorized</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td>Sarah</td>
-                                        <td>22313fea6bcc820c</td>
-                                        <td><span class="label label-sm label-danger">Blocked</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td>3</td>
-                                        <td>Kiddy</td>
-                                        <td>20013ewr6bcc820c</td>
-                                        <td><span class="label label-sm label-danger">Blocked</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td>4</td>
-                                        <td>Josh</td>
-                                        <td>20013fea6bcc123c</td>
-                                        <td><span class="label label-sm label-danger">Blocked</span></td>
-                                    </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
+				
 				    <!--BEGIN CONTENT-->
                 <div class="page-content">
                     <div id="tab-general">

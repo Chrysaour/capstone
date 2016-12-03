@@ -16,7 +16,7 @@ if(isset($_POST['submit']))
     $fname = mysql_real_escape_string($_POST['lastname']);
     $lname = mysql_real_escape_string($_POST['firstname']);
     $email = mysql_real_escape_string($_POST['email']);
-    $deviceid = mysql_real_escape_string($_POST['deviceid']);
+    $licenseid = mysql_real_escape_string($_POST['licenseid']);
     $privi = mysql_real_escape_string($_POST['priviledge']);
     $uname = mysql_real_escape_string($_POST['username']);
     $upass = md5(mysql_real_escape_string($_POST['password']));
@@ -24,7 +24,7 @@ if(isset($_POST['submit']))
     $fname = trim($fname);
     $lname = trim($lname);
     $email = trim($email);
-    $deviceid = trim($deviceid);
+    $licenseid = trim($licenseid);
     $privi = trim($privi);
     $uname = trim($uname);
     $upass = trim($upass);
@@ -36,7 +36,7 @@ if(isset($_POST['submit']))
 
     if($count == 0){
 
-        if(mysql_query("INSERT INTO users(firstname,lastname,email,device_id,priviledge,username,password) VALUES('$fname','$lname','$email','$deviceid','$privi','$uname','$upass')"))
+        if(mysql_query("INSERT INTO users(firstname,lastname,email,license_id,priviledge,username,password) VALUES('$fname','$lname','$email','$licenseid','$privi','$uname','$upass')"))
         {
             ?>
             <script>alert('successfully registered ');</script>
@@ -242,11 +242,11 @@ if(isset($_POST['submit']))
 												</div>
                                                 </div>
                                             </div>
-                                            <div class="form-group"><label class="col-sm-3 control-label">Device ID</label>
+                                            <div class="form-group"><label class="col-sm-3 control-label">License Key</label>
 
                                                 <div class="col-sm-9 controls">
                                                     <div class="row">
-                                                        <div class="col-xs-9"><input type="Device ID" name="deviceid" placeholder="Ex. das243asda432" class="form-control" required /></div>
+                                                        <div class="col-xs-9"><input type="License Key" name="licenseid" placeholder="Ex. das243asda432" class="form-control" required /></div>
                                                     </div>
                                                 </div>
                                             </div>

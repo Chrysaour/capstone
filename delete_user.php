@@ -1,18 +1,55 @@
 <?php
 session_start();
-include_once 'dbconnect.php';
 
 if(!isset($_SESSION['user']))
 {
 	header("Location: Login.php");
 }
+include_once 'dbconnect.php';
+
 $res=mysql_query("SELECT * FROM users WHERE user_id=".$_SESSION['user']);
 $userRow=mysql_fetch_array($res);
+
+
+if(isset($_POST['submit']))
+{
+    $email = mysql_real_escape_string($_POST['email']);
+
+    $email = trim($email);
+
+    // email exist or not
+    $query = "SELECT email FROM users WHERE email='$email'";
+    $result = mysql_query($query);
+    $count = mysql_num_rows($result); // if email not found then 
+
+    if($count == 1){
+
+        if(mysql_query("DELETE FROM users WHERE email='$email'"))
+        {
+            ?>
+            <script>alert('successfully deleted');</script>
+            <?php
+        }
+        else
+        {
+            ?>
+            <script>alert('error while deleting user');</script>
+            <?php
+        }
+    }
+    else{
+        ?>
+        <script>alert('Sorry You have provided nonexisting email');</script>
+        <?php
+    }
+
+}
+
 ?>
 
 
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <title>Smart Home Automation - Chrysaour Security</title>
     <meta charset="utf-8">
@@ -35,6 +72,7 @@ $userRow=mysql_fetch_array($res);
     <link type="text/css" rel="stylesheet" href="styles/zabuto_calendar.min.css">
     <link type="text/css" rel="stylesheet" href="styles/pace.css">
     <link type="text/css" rel="stylesheet" href="styles/jquery.news-ticker.css">
+	<link type="text/css" rel="stylesheet" href="styles/add_new_user_style.css">
     <script src="script/jquery-1.10.2.min.js"></script>
     <script src="script/jquery-migrate-1.2.1.min.js"></script>
     <script src="script/jquery-ui.js"></script>
@@ -105,7 +143,6 @@ $userRow=mysql_fetch_array($res);
                 <a id="logo" href="index.php" class="navbar-brand"><span class="fa fa-rocket"></span><span class="logo-text">Management</span><span style="display: none" class="logo-text-icon">µ</span></a></div>
             <div class="topbar-main"><a id="menu-toggle" href="#" class="hidden-xs"><i class="fa fa-bars"></i></a>
                 <ul class="nav navbar navbar-top-links navbar-right mbn">
-
                     <li class="dropdown topbar-user"><a data-hover="dropdown" href="#" class="dropdown-toggle"><img src="images/avatar/profile-pic.png" alt="" class="img-responsive img-circle"/>&nbsp;<span class="hidden-xs"><?php echo $userRow['username']; ?></span>&nbsp;<span class="caret"></span></a>
                         <ul class="dropdown-menu dropdown-user pull-right">
                             <li><a href="#"><i class="fa fa-user"></i>My Profile</a></li>
@@ -131,12 +168,12 @@ $userRow=mysql_fetch_array($res);
                 <div id="title-breadcrumb-option-demo" class="page-title-breadcrumb">
                     <div class="page-header pull-left">
                         <div class="page-title">
-                            Add New Product</div>
+                            Add New User</div>
                     </div>
                     <ol class="breadcrumb page-breadcrumb pull-right">
                         <li><i class="fa fa-home"></i>&nbsp;<a href="index.php">Home</a>&nbsp;&nbsp;<i class="fa fa-angle-right"></i>&nbsp;&nbsp;</li>
-                        <li class="hidden"><a href="#">Add New Product</a>&nbsp;&nbsp;<i class="fa fa-angle-right"></i>&nbsp;&nbsp;</li>
-                        <li class="active">Add New Product</li>
+                        <li class="hidden"><a href="#">Add New User</a>&nbsp;&nbsp;<i class="fa fa-angle-right"></i>&nbsp;&nbsp;</li>
+                        <li class="active">Add New user</li>
                     </ol>
                     <div class="clearfix">
                     </div>
@@ -164,46 +201,16 @@ $userRow=mysql_fetch_array($res);
                             <div class="col-md-9">
                                 <div id="generalTabContent" class="tab-content">
                                     <div id="tab-edit" class="tab-pane fade in active">
-                                        <form action="#" class="form-horizontal"><h3>Admin Setting</h3>
-
-                                            <div class="form-group"><label class="col-sm-3 control-label">Admin</label>
-
+                                        <form method="post" action="#" class="form-horizontal"><h3>Delete User</h3>
+                                            <div class="form-group"><label class="col-sm-3 control-label">Email</label>
                                                 <div class="col-sm-9 controls">
                                                     <div class="row">
-                                                        <div class="col-xs-9"><input type="text" placeholder="admin" class="form-control"/></div>
+                                                        <div class="col-xs-9"><input type="Email" name="email" placeholder="Ex. test@test.ca" class="form-control" required /></div>
                                                     </div>
                                                 </div>
-                                            </div>
-
+                                            </div> 
                                             <hr/>
-                                            <h3>Product Setting</h3>
-
-                                            <div class="form-group"><label class="col-sm-3 control-label">Product ID</label>
-
-                                                <div class="col-sm-9 controls">
-                                                    <div class="row">
-                                                        <div class="col-xs-9"><input type="text" placeholder="Product ID" class="form-control"/></div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="form-group"><label class="col-sm-3 control-label">Product Password</label>
-
-                                                <div class="col-sm-9 controls">
-                                                    <div class="row">
-                                                        <div class="col-xs-9"><input type="text" placeholder="Product Password" class="form-control"/></div>
-                                                    </div>
-                                                </div>
-                                            </div>
-											  <div class="form-group"><label class="col-sm-3 control-label">Desired Name for this product</label>
-
-                                                <div class="col-sm-9 controls">
-                                                    <div class="row">
-                                                        <div class="col-xs-9"><input type="text" placeholder="Desired Name" class="form-control"/></div>
-                                                    </div>
-                                                </div>
-                                            </div>             
-                                            <hr/>
-                                            <button type="submit" class="btn btn-green btn-block">Finish</button>
+                                            <button type="submit" class="btn btn-green btn-block" name="submit">Delete User</button>
                                         </form>
                                     </div>
                                 </div>

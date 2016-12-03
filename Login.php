@@ -15,20 +15,26 @@ if(isset($_POST['btn-login']))
     $email = trim($email);
     $upass = trim($upass);
 
-    $res=mysql_query("SELECT user_id, username, password FROM users WHERE email='$email'");
+    $res=mysql_query("SELECT user_id, username, password, priviledge FROM users WHERE email='$email'");
     $row=mysql_fetch_array($res);
 
     $count = mysql_num_rows($res); // if uname/pass correct it returns must be 1 row
 
-    if($count == 1 && $row['password']==md5($upass))
+    if($count == 1 && $row['password']==md5($upass) && $row['priviledge'] =="ADMIN")
     {
         $_SESSION['user'] = $row['user_id'];
         header("Location: index.php");
     }
+	elseif($count == 1 && $row['priviledge'] !="ADMIN")
+    {
+        ?>
+        <script>alert('Please log in with Administrative account');</script>
+        <?php
+    }
     else
     {
         ?>
-        <script>alert('Username / Password Seems Wrong !');</script>
+        <script>alert('Username / Password Seems Wrong');</script>
         <?php
     }
 

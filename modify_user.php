@@ -1,17 +1,56 @@
 <?php
 session_start();
-include_once 'dbconnect.php';
 
 if(!isset($_SESSION['user']))
 {
-    header("Location: Login.php");
+	header("Location: Login.php");
 }
+include_once 'dbconnect.php';
+
 $res=mysql_query("SELECT * FROM users WHERE user_id=".$_SESSION['user']);
 $userRow=mysql_fetch_array($res);
+
+
+if(isset($_POST['submit']))
+{
+    $email = mysql_real_escape_string($_POST['email']);
+    $licenseid = mysql_real_escape_string($_POST['licenseid']);
+    $email = trim($email);
+	$licenseid = trim($licenseid);
+
+    // email exist or not
+    $query = "SELECT email FROM users WHERE email='$email'";
+    $result = mysql_query($query);
+    $count = mysql_num_rows($result); // if email not found then 
+
+    if($count == 1){
+
+        if(mysql_query("UPDATE users SET license_id='$licenseid' WHERE email='$email'"))
+        {
+            ?>
+            <script>alert('successfully updated');</script>
+            <?php
+        }
+        else
+        {
+            ?>
+            <script>alert('error while updating user');</script>
+            <?php
+        }
+    }
+    else{
+        ?>
+        <script>alert('Sorry the user does not exist');</script>
+        <?php
+    }
+
+}
+
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <title>Smart Home Automation - Chrysaour Security</title>
     <meta charset="utf-8">
@@ -34,6 +73,7 @@ $userRow=mysql_fetch_array($res);
     <link type="text/css" rel="stylesheet" href="styles/zabuto_calendar.min.css">
     <link type="text/css" rel="stylesheet" href="styles/pace.css">
     <link type="text/css" rel="stylesheet" href="styles/jquery.news-ticker.css">
+	<link type="text/css" rel="stylesheet" href="styles/add_new_user_style.css">
     <script src="script/jquery-1.10.2.min.js"></script>
     <script src="script/jquery-migrate-1.2.1.min.js"></script>
     <script src="script/jquery-ui.js"></script>
@@ -92,21 +132,18 @@ $userRow=mysql_fetch_array($res);
     </script>
 </head>
 <body>
-<div>
-    <!--BEGIN BACK TO TOP-->
-    <a id="totop" href="#"><i class="fa fa-angle-up"></i></a>
-    <!--END BACK TO TOP-->
-    <!--BEGIN TOPBAR-->
-    <div id="header-topbar-option-demo" class="page-header-topbar">
-        <nav id="topbar" role="navigation" style="margin-bottom: 0;" data-step="3" class="navbar navbar-default navbar-static-top">
+    <div>
+        <!--BEGIN BACK TO TOP-->
+        <a id="totop" href="#"><i class="fa fa-angle-up"></i></a>
+        <!--END BACK TO TOP-->
+                <!--BEGIN TOPBAR-->
+        <div id="header-topbar-option-demo" class="page-header-topbar">
+            <nav id="topbar" role="navigation" style="margin-bottom: 0;" data-step="3" class="navbar navbar-default navbar-static-top">
             <div class="navbar-header">
                 <button type="button" data-toggle="collapse" data-target=".sidebar-collapse" class="navbar-toggle"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
                 <a id="logo" href="index.php" class="navbar-brand"><span class="fa fa-rocket"></span><span class="logo-text">Management</span><span style="display: none" class="logo-text-icon">µ</span></a></div>
             <div class="topbar-main"><a id="menu-toggle" href="#" class="hidden-xs"><i class="fa fa-bars"></i></a>
                 <ul class="nav navbar navbar-top-links navbar-right mbn">
-                    <li class="dropdown"><a data-hover="dropdown" href="#" class="dropdown-toggle"><i class="fa fa-bell fa-fw"></i><span class="badge badge-green">1</span></a>
-
-                    </li>
                     <li class="dropdown topbar-user"><a data-hover="dropdown" href="#" class="dropdown-toggle"><img src="images/avatar/profile-pic.png" alt="" class="img-responsive img-circle"/>&nbsp;<span class="hidden-xs"><?php echo $userRow['username']; ?></span>&nbsp;<span class="caret"></span></a>
                         <ul class="dropdown-menu dropdown-user pull-right">
                             <li><a href="#"><i class="fa fa-user"></i>My Profile</a></li>
@@ -114,57 +151,92 @@ $userRow=mysql_fetch_array($res);
                             <li><a href="logout.php?logout"><i class="fa fa-key"></i>Log Out</a></li>
                         </ul>
                     </li>
-                </ul>
+                    </ul>
             </div>
         </nav>
-    </div>
-    <!--END TOPBAR-->
-    <div id="wrapper">
-        <!--BEGIN SIDEBAR MENU-->
-        <nav id="sidebar" role="navigation" data-step="2" data-intro="Template has &lt;b&gt;many navigation styles&lt;/b&gt;"
-             data-position="right" class="navbar-default navbar-static-side">
-            <div id = "sidebar_main" class="sidebar-collapse menu-scroll">
-
-            </div>
+        </div>
+        <!--END TOPBAR-->
+        <div id="wrapper">
+            <!--BEGIN SIDEBAR MENU-->
+            <nav id="sidebar" role="navigation" data-step="2" data-intro="Template has &lt;b&gt;many navigation styles&lt;/b&gt;"
+                data-position="right" class="navbar-default navbar-static-side">
+            <div id="sidebar_main" class="sidebar-collapse menu-scroll"></div>
         </nav>
-        <!--END SIDEBAR MENU-->
-        <!--BEGIN PAGE WRAPPER-->
-        <div id="page-wrapper">
-            <!--BEGIN TITLE & BREADCRUMB PAGE-->
-            <div id="title-breadcrumb-option-demo" class="page-title-breadcrumb">
-                <div class="page-header pull-left">
-                    <div class="page-title">
-                        Manage Devices</div>
-                </div>
-                <ol class="breadcrumb page-breadcrumb pull-right">
-                    <li><i class="fa fa-home"></i>&nbsp;<a href="index.php">Home</a>&nbsp;&nbsp;<i class="fa fa-angle-right"></i>&nbsp;&nbsp;</li>
-                    <li class="hidden"><a href="#">Manage Devices</a>&nbsp;&nbsp;<i class="fa fa-angle-right"></i>&nbsp;&nbsp;</li>
-                    <li class="active">Manage Devices</li>
-                </ol>
-                <div class="clearfix">
-                </div>
-            </div>
-            <!--END TITLE & BREADCRUMB PAGE-->
-            <!--BEGIN CONTENT-->
-            <div class="page-content">
-                <div id="tab-general">
-                    <div class="row mbl">
-                        <div class="col-lg-12">
-
-                            <div class="col-md-12">
-                                <div id="area-chart-spline" style="width: 100%; height: 300px; display: none;">
-                                </div>
-                            </div>
-
-                        </div>
-
+          
+          
+            <div id="page-wrapper">
+                <!--BEGIN TITLE & BREADCRUMB PAGE-->
+                <div id="title-breadcrumb-option-demo" class="page-title-breadcrumb">
+                    <div class="page-header pull-left">
+                        <div class="page-title">
+                            Add New User</div>
+                    </div>
+                    <ol class="breadcrumb page-breadcrumb pull-right">
+                        <li><i class="fa fa-home"></i>&nbsp;<a href="index.php">Home</a>&nbsp;&nbsp;<i class="fa fa-angle-right"></i>&nbsp;&nbsp;</li>
+                        <li class="hidden"><a href="#">Add New User</a>&nbsp;&nbsp;<i class="fa fa-angle-right"></i>&nbsp;&nbsp;</li>
+                        <li class="active">Add New user</li>
+                    </ol>
+                    <div class="clearfix">
                     </div>
                 </div>
+                <!--END TITLE & BREADCRUMB PAGE-->
+                <!--BEGIN CONTENT-->
+                <div class="page-content">
+                    <div id="tab-general">
+                        <div class="row mbl">
+                            <div class="col-lg-12">
+                                
+                                            <div class="col-md-12">
+                                                <div id="area-chart-spline" style="width: 100%; height: 300px; display: none;">
+                                                </div>
+                                            </div>
+                                
+                            </div>
+
+                            <div class="col-lg-12">
+                              
+                                    
+                              <div class="row">
+                    <div class="col-md-12">
+                        <div class="row mtl">
+                            <div class="col-md-9">
+                                <div id="generalTabContent" class="tab-content">
+                                    <div id="tab-edit" class="tab-pane fade in active">
+                                        <form method="post" action="#" class="form-horizontal"><h3>Modify User Info</h3>
+                                            <div class="form-group"><label class="col-sm-3 control-label">Email</label>
+                                                <div class="col-sm-9 controls">
+                                                    <div class="row">
+                                                        <div class="col-xs-9"><input type="Email" name="email" placeholder="Ex. test@test.ca" class="form-control" required /></div>
+                                                    </div>
+                                                </div>
+                                            </div> 
+                                            <hr/>
+											<div class="form-group"><label class="col-sm-3 control-label">New License Key</label>
+
+                                                <div class="col-sm-9 controls">
+                                                    <div class="row">
+                                                        <div class="col-xs-9"><input type="License Key" name="licenseid" placeholder="Ex. das243asda432" class="form-control" required /></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+											<hr/>
+                                            <button type="submit" class="btn btn-green btn-block" name="submit">Update User</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                              
+                                </div>
+                        </div>
+                    </div>
+                </div>
+                <!--END CONTENT-->
             </div>
-            <!--END CONTENT-->
+            <!--END PAGE WRAPPER-->
         </div>
-        <!--END PAGE WRAPPER-->
     </div>
-</div>
 </body>
 </html>
