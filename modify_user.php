@@ -169,12 +169,12 @@ if(isset($_POST['submit']))
                 <div id="title-breadcrumb-option-demo" class="page-title-breadcrumb">
                     <div class="page-header pull-left">
                         <div class="page-title">
-                            Add New User</div>
+                            Modify User Information</div>
                     </div>
                     <ol class="breadcrumb page-breadcrumb pull-right">
                         <li><i class="fa fa-home"></i>&nbsp;<a href="index.php">Home</a>&nbsp;&nbsp;<i class="fa fa-angle-right"></i>&nbsp;&nbsp;</li>
-                        <li class="hidden"><a href="#">Add New User</a>&nbsp;&nbsp;<i class="fa fa-angle-right"></i>&nbsp;&nbsp;</li>
-                        <li class="active">Add New user</li>
+                        <li class="hidden"><a href="#">Modify User Info</a>&nbsp;&nbsp;<i class="fa fa-angle-right"></i>&nbsp;&nbsp;</li>
+                        <li class="active">Modify User Info</li>
                     </ol>
                     <div class="clearfix">
                     </div>
